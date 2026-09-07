@@ -1,0 +1,123 @@
+name: daily-gas-crawl
+on:
+  schedule:
+    - cron: "15 13 * * *"   # 07:15 America/Denver (MDT = UTC-6)
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scrape and append observation
+        env:
+          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+        run: |
+          set -euo pipefail
+          if [ -z "${FIRECRAWL_API_KEY:-}" ]; then
+            echo "Add repo secret FIRECRAWL_API_KEY (Settings → Secrets and variables → Actions)"
+            exit 1
+          fi
+          python3 << 'PY'
+          import json, os, urllib.request, datetime
+          from pathlib import Path
+
+          KEY = os.environ["FIRECRAWL_API_KEY"]
+          URLS = [
+            "https://www.newsbreak.com/centennial-co/gas",
+            "https://www.newsbreak.com/littleton-co/gas",
+            "https://www.newsbreak.com/greenwood-village-co/gas",
+          ]
+          schema = {
+            "type": "object",
+            "properties": {
+              "stations": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {"type": "string"},
+                    "addr": {"type": "string"},
+                    "city": {"type": "string"},
+                    "regular": {"type": ["number", "null"]},
+                    "premium": {"type": ["number", "null"]}
+                  }
+                }
+              }
+            }
+          }
+          cities = {"centennial", "littleton", "greenwood village"}
+          seen = {}
+          blocked = []
+          for url in URLS:
+            body = json.dumps({
+              "url": url,
+              "formats": ["json"],
+              "jsonOptions": {
+                "schema": schema,
+                "prompt": "Extract gas stations in Centennial, Littleton, or Greenwood Village only. Regular and premium prices as numbers. No diesel. Skip stations outside those three cities."
+              }
+            }).encode()
+            req = urllib.request.Request(
+              "https://api.firecrawl.dev/v1/scrape",
+              data=body,
+              headers={
+                "Authorization": f"Bearer {KEY}",
+                "Content-Type": "application/json",
+              },
+              method="POST",
+            )
+            try:
+              with urllib.request.urlopen(req, timeout=90) as r:
+                payload = json.loads(r.read().decode())
+            except Exception as e:
+              blocked.append(f"{url}: {e}")
+              continue
+            data = (payload.get("data") or {}).get("json") or {}
+            for s in data.get("stations") or []:
+              city = (s.get("city") or "").strip()
+              if city.lower() not in cities:
+                continue
+              name = (s.get("name") or "").strip()
+              addr = (s.get("addr") or "").strip()
+              if not name or not addr:
+                continue
+              sid = (name + "-" + addr).lower().replace(" ", "-")[:40]
+              seen[sid] = {
+                "id": sid,
+                "name": name,
+                "addr": addr,
+                "city": city,
+                "regular": s.get("regular"),
+                "premium": s.get("premium"),
+                "source": "firecrawl+newsbreak",
+              }
+
+          path = Path("gas-history.json")
+          tape = json.loads(path.read_text()) if path.exists() else {
+            "source": "observed public listings only",
+            "area": "Centennial, Littleton, Greenwood Village",
+            "grades": ["regular", "premium"],
+            "observations": [],
+          }
+          now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=-6)))
+          obs = {
+            "date": now.strftime("%Y-%m-%d"),
+            "crawled_at": now.strftime("%Y-%m-%dT%H:%M:%S-06:00"),
+            "status": "ok" if seen else "blocked",
+            "note": "firecrawl daily" + ("; blocked: " + "; ".join(blocked) if blocked else ""),
+            "stations": list(seen.values()),
+          }
+          tape.setdefault("observations", []).append(obs)
+          path.write_text(json.dumps(tape, indent=2) + "\n")
+          print(obs["status"], "stations", len(seen), "blocked", len(blocked))
+          PY
+      - name: Commit tape
+        run: |
+          git config user.name "waze-gas-bot"
+          git config user.email "mwittern@raftelis.com"
+          git add gas-history.json
+          git diff --cached --quiet && echo "no change" && exit 0
+          git commit -m "Daily observed gas crawl"
+          git push
