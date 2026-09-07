@@ -9,9 +9,49 @@
   <meta name="theme-color" content="#0b1220" />
   <link rel="manifest" href="manifest.json" />
   <title>Waze Gas</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<p>Placeholder — use artifacts copy if this is truncated.</p>
-<script>location.replace('./app.html')</script>
+  <div class="top">
+    <h1>Waze Gas</h1>
+    <div class="seg">
+      <button id="btnReg" class="on" type="button">Regular</button>
+      <button id="btnPrem" type="button">Premium</button>
+    </div>
+  </div>
+  <div class="wrap" id="scroller">
+    <div class="refreshing" id="pullMsg">Release to refresh</div>
+    <div class="row" id="cities"></div>
+    <div class="actions">
+      <button class="btn" id="shareBtn" type="button">Share cheapest</button>
+      <button class="btn" id="locBtn" type="button">Use location</button>
+      <button class="btn" id="editBtn" type="button">Edit</button>
+    </div>
+    <div class="edit" id="editBox">
+      <input id="label" placeholder="Label (Work)" />
+      <input id="query" placeholder="ZIP or city" />
+      <button class="btn" id="addPlace" type="button">Save place</button>
+      <div id="placeList"></div>
+    </div>
+    <div class="g3" id="glance"></div>
+    <p class="meta" id="stamp"></p>
+    <p class="hint" id="emptyNote"></p>
+    <div id="stations"></div>
+    <details class="chart" id="chartBox">
+      <summary>10-day chart</summary>
+      <canvas id="chart" width="720" height="400"></canvas>
+      <div class="legend" id="legend"></div>
+    </details>
+    <p class="hint">Open in Safari → Share → Add to Home Screen. Next crawl 7:15am MDT.</p>
+  </div>
+  <div class="coach" id="coach">
+    <div class="card">
+      <strong>Put this on the Home Screen</strong>
+      <p class="hint">Safari only. Tap Share, then Add to Home Screen.</p>
+      <button class="btn" id="coachOk" type="button" style="width:100%;margin-top:8px">Got it</button>
+    </div>
+  </div>
+  <div id="toast"></div>
+  <script src="app.js"></script>
 </body>
 </html>
