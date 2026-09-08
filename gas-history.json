@@ -30,6 +30,21 @@
         {"id": "shell-2410", "name": "Shell", "addr": "2410 E Arapahoe Rd", "city": "Centennial", "regular": 3.95, "premium": null, "source": "gasbuddy+way conflict", "conflict": "$3.95-4.39"},
         {"id": "ks-holly", "name": "King Soopers", "addr": "8250 S Holly St", "city": "Centennial", "regular": 4.19, "premium": 4.79, "source": "morning carry-forward"}
       ]
+    },
+    {
+      "date": "2026-09-08",
+      "crawled_at": "2026-09-08T07:45:00-06:00",
+      "status": "partial",
+      "note": "NewsBreak city pages worked for listed stations; Way.com Cloudflare blocked; 7-Eleven store pages limited/no full prices; no FIRECRAWL_API_KEY; GasBuddy hard scrape. No invent.",
+      "stations": [
+        {"id": "shell-santafe", "name": "Shell", "addr": "6200 S Santa Fe Dr", "city": "Littleton", "regular": 3.90, "premium": 4.85, "source": "newsbreak"},
+        {"id": "exxon-6556", "name": "Exxon", "addr": "6556 S Broadway", "city": "Littleton", "regular": 3.96, "premium": 4.92, "source": "newsbreak"},
+        {"id": "shell-5901", "name": "Shell", "addr": "5901 S University Blvd", "city": "Greenwood Village", "regular": 3.96, "premium": 4.91, "source": "newsbreak"},
+        {"id": "shell-2410", "name": "Shell", "addr": "2410 E Arapahoe Rd", "city": "Centennial", "regular": 3.96, "premium": 4.91, "source": "newsbreak"},
+        {"id": "mobil-6515", "name": "Mobil", "addr": "6515 S Broadway", "city": "Littleton", "regular": 3.97, "premium": 4.92, "source": "newsbreak"},
+        {"id": "circlek-7425", "name": "Circle K", "addr": "7425 E Arapahoe Rd", "city": "Centennial", "regular": 3.99, "premium": 4.89, "source": "newsbreak"},
+        {"id": "conoco-drycreek", "name": "Conoco", "addr": "8787 E Dry Creek Rd", "city": "Centennial", "regular": 4.10, "premium": 5.20, "source": "newsbreak"}
+      ]
     }
   ]
 }
