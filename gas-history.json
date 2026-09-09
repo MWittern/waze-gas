@@ -45,6 +45,13 @@
         {"id": "circlek-7425", "name": "Circle K", "addr": "7425 E Arapahoe Rd", "city": "Centennial", "regular": 3.99, "premium": 4.89, "source": "newsbreak"},
         {"id": "conoco-drycreek", "name": "Conoco", "addr": "8787 E Dry Creek Rd", "city": "Centennial", "regular": 4.10, "premium": 5.20, "source": "newsbreak"}
       ]
+    },
+    {
+      "date": "2026-09-09",
+      "crawled_at": "2026-09-09T08:04:00-06:00",
+      "status": "blocked",
+      "note": "NewsBreak subscribe wall; Way.com Cloudflare blocked; GasBuddy Cloudflare blocked; 7-Eleven locator no usable prices; no FIRECRAWL_API_KEY. All primary sources blocked. No invent.",
+      "stations": []
     }
   ]
 }
