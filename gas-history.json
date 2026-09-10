@@ -52,6 +52,23 @@
       "status": "blocked",
       "note": "NewsBreak subscribe wall; Way.com Cloudflare blocked; GasBuddy Cloudflare blocked; 7-Eleven locator no usable prices; no FIRECRAWL_API_KEY. All primary sources blocked. No invent.",
       "stations": []
+    },
+    {
+      "date": "2026-09-10",
+      "crawled_at": "2026-09-10T07:41:00-06:00",
+      "status": "partial",
+      "note": "NewsBreak city pages worked for top listed stations (subscribe wall limited full list); Way.com showed mostly Sep 9 prices; 7-Eleven store pages limited; no FIRECRAWL_API_KEY; GasBuddy not used. No invent.",
+      "stations": [
+        {"id": "shell-santafe", "name": "Shell", "addr": "6200 S Santa Fe Dr", "city": "Littleton", "regular": 3.90, "premium": 4.85, "source": "newsbreak"},
+        {"id": "shell-2410", "name": "Shell", "addr": "2410 E Arapahoe Rd", "city": "Centennial", "regular": 3.96, "premium": 4.91, "source": "newsbreak"},
+        {"id": "mobil-6515", "name": "Mobil", "addr": "6515 S Broadway", "city": "Littleton", "regular": 3.99, "premium": 4.94, "source": "newsbreak"},
+        {"id": "exxon-6556", "name": "Exxon", "addr": "6556 S Broadway", "city": "Littleton", "regular": 3.99, "premium": 4.94, "source": "newsbreak"},
+        {"id": "shell-5901", "name": "Shell", "addr": "5901 S University Blvd", "city": "Greenwood Village", "regular": 4.00, "premium": 4.95, "source": "newsbreak"},
+        {"id": "ks-5950", "name": "King Soopers", "addr": "5950 S Holly St", "city": "Greenwood Village", "regular": 4.20, "premium": 5.00, "source": "newsbreak"},
+        {"id": "circlek-7425", "name": "Circle K", "addr": "7425 E Arapahoe Rd", "city": "Centennial", "regular": 4.40, "premium": 5.30, "source": "newsbreak"},
+        {"id": "conoco-drycreek", "name": "Conoco", "addr": "8787 E Dry Creek Rd", "city": "Centennial", "regular": 4.40, "premium": 5.20, "source": "newsbreak"},
+        {"id": "circlek-quebec", "name": "Circle K", "addr": "8263 S Quebec St", "city": "Centennial", "regular": 4.40, "premium": 5.30, "source": "newsbreak"}
+      ]
     }
   ]
 }
