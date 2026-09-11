@@ -69,6 +69,23 @@
         {"id": "conoco-drycreek", "name": "Conoco", "addr": "8787 E Dry Creek Rd", "city": "Centennial", "regular": 4.40, "premium": 5.20, "source": "newsbreak"},
         {"id": "circlek-quebec", "name": "Circle K", "addr": "8263 S Quebec St", "city": "Centennial", "regular": 4.40, "premium": 5.30, "source": "newsbreak"}
       ]
+    },
+    {
+      "date": "2026-09-11",
+      "crawled_at": "2026-09-11T07:41:00-06:00",
+      "status": "partial",
+      "note": "NewsBreak city pages worked for listed stations (subscribe wall limited full list); Way.com Cloudflare/empty for Centennial/Greenwood; 7-Eleven store pages limited/no prices returned; no FIRECRAWL_API_KEY; GasBuddy not used. No invent.",
+      "stations": [
+        {"id": "shell-5901", "name": "Shell", "addr": "5901 S University Blvd", "city": "Greenwood Village", "regular": 4.30, "premium": 4.95, "source": "newsbreak"},
+        {"id": "shell-2410", "name": "Shell", "addr": "2410 E Arapahoe Rd", "city": "Centennial", "regular": 4.30, "premium": 5.25, "source": "newsbreak"},
+        {"id": "mobil-6515", "name": "Mobil", "addr": "6515 S Broadway", "city": "Littleton", "regular": 4.30, "premium": 5.25, "source": "newsbreak"},
+        {"id": "exxon-6556", "name": "Exxon", "addr": "6556 S Broadway", "city": "Littleton", "regular": 4.30, "premium": 5.25, "source": "newsbreak"},
+        {"id": "shell-santafe", "name": "Shell", "addr": "6200 S Santa Fe Dr", "city": "Littleton", "regular": 4.30, "premium": 5.25, "source": "newsbreak"},
+        {"id": "circlek-quebec", "name": "Circle K", "addr": "8263 S Quebec St", "city": "Centennial", "regular": 4.30, "premium": 5.20, "source": "newsbreak"},
+        {"id": "ks-5950", "name": "King Soopers", "addr": "5950 S Holly St", "city": "Greenwood Village", "regular": 4.40, "premium": 5.00, "source": "newsbreak"},
+        {"id": "conoco-drycreek", "name": "Conoco", "addr": "8787 E Dry Creek Rd", "city": "Centennial", "regular": 4.40, "premium": 5.20, "source": "newsbreak"},
+        {"id": "circlek-7425", "name": "Circle K", "addr": "7425 E Arapahoe Rd", "city": "Centennial", "regular": 4.40, "premium": 5.30, "source": "newsbreak"}
+      ]
     }
   ]
 }
